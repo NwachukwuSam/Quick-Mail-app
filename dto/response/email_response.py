@@ -1,6 +1,7 @@
 class Email_Response:
     def __init__(self):
         self.__recipient_email: str = ""
+        self.__senders_email: str = ""
         self.__title: str = ""
         self.__email_body: str = ""
 
@@ -9,6 +10,12 @@ class Email_Response:
 
     def get_recipient_email(self) -> str:
         return self.__recipient_email
+
+    def set_senders_email(self, senders_email: str):
+        self.__senders_email = senders_email
+
+    def get_senders_email(self) -> str:
+        return self.__senders_email
 
     def set_title(self, title: str):
         self.__title = title
@@ -26,6 +33,7 @@ class Email_Response:
         return f"""
                 QUICK-MAIL
     ========================================
+    Your Email: {self.__senders_email}
     Recipients Email:{self.__recipient_email} 
     Email Title:{self.__title}
     Message Body: {self.__email_body}

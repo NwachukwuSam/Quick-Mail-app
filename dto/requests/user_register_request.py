@@ -14,7 +14,7 @@ class User_Registration_Request:
         return self.__first_name
 
     def set_last_name(self, last_name: str):
-        self.__first_name = last_name
+        self.__last_name = last_name
 
     def get_last_name(self) -> str:
         return self.__last_name

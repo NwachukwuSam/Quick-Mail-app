@@ -1,6 +1,7 @@
 class Email_Request:
     def __init__(self):
         self.__recipient_email: str = ""
+        self.__senders_email: str = ""
         self.__title: str = ""
         self.__email_body: str = ""
 
@@ -9,6 +10,12 @@ class Email_Request:
 
     def get_recipient_email(self) -> str:
         return self.__recipient_email
+
+    def set_senders_email(self, senders_email: str):
+        self.__senders_email = senders_email
+
+    def get_senders_email(self) -> str:
+        return self.__senders_email
 
     def set_title(self, title: str):
         self.__title = title

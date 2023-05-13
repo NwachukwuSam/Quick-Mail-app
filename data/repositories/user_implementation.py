@@ -1,5 +1,5 @@
 from abc import ABC
-from random import random
+from random import random, randint
 
 from data.model.user import User
 from data.repositories.user_repository_interface import User_Repository_Interface
@@ -10,12 +10,15 @@ class User_Implementation(User_Repository_Interface, ABC):
     count = 0
 
     def save_user(self, user: User) -> User:
-        rand = random.randint(1, 100)
+        rand = randint(1, 100)
+        print(rand)
         if user.get_id() == 0:
             user.set_id(self.generate_user_id())
-            user.set_email_address(user.get_first_name() + user.get_last_name() + rand)
+            user.set_email_address(user.get_first_name() + user.get_last_name() + str(rand)+"@quickmail.com")
+            print(user.get_email_address())
         self.users.append(user)
         self.count += 1
+        print(user)
         return user
 
     def generate_user_id(self):

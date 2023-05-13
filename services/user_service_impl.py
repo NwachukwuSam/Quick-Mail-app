@@ -14,7 +14,7 @@ class User_Service_Implementation(User_Service_Interface, ABC):
 
     def register_user(self, user_register_request: User_Registration_Request) -> User_Response:
         if self.email_exist(user_register_request.get_email_address()):
-            raise ValueError(user_register_request.get_email_address()+" " + "Already Exist")
+            raise ValueError(user_register_request.get_email_address() + " " + "Already Exist")
 
         account = Mapper.map_user_request(user_register_request)
         save_account = self.user_repository.save_user(account)
@@ -28,19 +28,23 @@ class User_Service_Implementation(User_Service_Interface, ABC):
         else:
             return False
 
-    def login(self, email_address: str, password:str):
+    def login(self, email_address: str, password: str):
         email = self.user_repository.find_user_by_email(email_address)
+        if email is None:
+            raise ValueError("Email Account does not Exist")
         if email.get_password() == password:
-            raise ValueError("Invalid Email or Password")
-        else:
             return True
+        else:
+            raise ValueError("Invalid Email or Password")
 
     def find_user(self, email_address: str) -> User:
         users = self.user_repository.find_user_by_email(email_address)
         if users.get_email_address() == email_address:
             return users
 
-    def close_account(self, email_address:str, password:str):
+    def close_account(self, email_address: str, password: str):
         users = self.user_repository.find_user_by_email(email_address)
-        if users.get_password() == password:
+        if users.get_password() != password:
+            raise ValueError("Invalid Email or Password")
+        else:
             self.user_repository.delete_user_by_email(email_address)

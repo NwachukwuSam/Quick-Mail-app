@@ -29,6 +29,7 @@ class Mapper:
     @staticmethod
     def map_email_request(email_request: Email_Request) -> Email:
         email = Email()
+        email.set_senders_email(email_request.get_senders_email())
         email.set_recipient_email(email_request.get_recipient_email())
         email.set_title(email_request.get_title())
         email.set_email_body(email_request.get_email_body())
@@ -37,8 +38,9 @@ class Mapper:
     @staticmethod
     def map_email_response(email: Email) -> Email_Response:
         email_response = Email_Response()
+        email_response.set_senders_email(email.get_senders_email())
         email_response.set_recipient_email(email.get_recipient_email())
         email_response.set_title(email.get_title())
         email_response.set_email_body(email.get_email_body())
         return email_response
-    
+

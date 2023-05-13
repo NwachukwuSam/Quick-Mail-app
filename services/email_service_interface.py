@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+from data.model.email import Email
 from dto.requests.email_request import Email_Request
 from dto.response.email_response import Email_Response
 
@@ -14,7 +15,7 @@ class Email_Service_Interface(ABC):
         pass
 
     @abstractmethod
-    def find_email(self, email_title: str) -> Email_Response:
+    def find_email(self, email_title: str) -> Email:
         pass
 
     @abstractmethod
